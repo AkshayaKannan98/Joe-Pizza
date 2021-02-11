@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Joe_s_Pizza.Models.PizzaModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .image {
+        opacity: 1;
+        display: block;
+        width: 100px;
+        height: 100px;
+        transition: .5s ease;
+        backface-visibility: hidden;
+    }
+
+        .image:hover {
+            opacity: 0.3;
+        }
+
+    .name {
+        color: black;
+        text-decoration: none;
+    }
+
+        .name:hover {
+            text-decoration: underline;
+            color: white;
+            border: 1px solid black;
+            padding: 10px;
+            background: #808080;
+        }
+</style>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th style="visibility:hidden">
+                @Html.DisplayNameFor(model => model.Pno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="visibility:hidden">
+                    @Html.DisplayFor(modelItem => item.Pno)
+                </td>
+                <td>
+                    <a class="image" title="Click To View" href="@Url.Action("Details","Dashboard",new { pno = item.Pno })"><img src="~/images/@Html.DisplayFor(modelItem => item.Image)" width="100px" height="100px" /></a>
+                </td>
+                <td>
+                    <a class="name" title="Click To View" href="@Url.Action("Details","Dashboard",new { pno = item.Pno })"> @Html.DisplayFor(modelItem => item.PizzaName) </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
